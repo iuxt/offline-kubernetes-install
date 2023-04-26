@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apiserver="10.0.0.7"
+apiserver="10.0.0.3"
 
 
 sudo kubeadm init \
