@@ -1,5 +1,5 @@
 #!/bin/bash
-yum install -y ./*.rpm
+yum install -y docker-ce-20.10/*.rpm
 
 sudo mkdir /etc/docker
 cat <<EOF | sudo tee /etc/docker/daemon.json
