@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 cd temp/
 curl -OL -C - https://github.com/iuxt/offline-kubernetes-install/releases/download/docker-ce-20.10.23-3.el7.x86_64/docker-ce-20.10.tar.gz
@@ -8,6 +9,8 @@ curl -OL -C - https://github.com/iuxt/offline-kubernetes-install/releases/downlo
 curl -OL -C - https://github.com/iuxt/offline-kubernetes-install/releases/download/kubeadm_images/kubeadm_images.tar.gz
 curl -OL -C - https://github.com/iuxt/offline-kubernetes-install/releases/download/kubeadm_rpms/kubeadm_rpms.tar.gz
 curl -OL -C - https://github.com/iuxt/offline-kubernetes-install/releases/download/keepalived/keepalived.tar.gz
+
+md5sum -c md5.sum
 
 tar xf docker-ce-20.10.tar.gz -C ../docker/
 tar xf flannel.tar.gz -C ../flannel/
