@@ -10,5 +10,4 @@ sed -e "s/10.0.0.11/${master1}/g" \
     -e "s/10.0.0.13/${master3}/g" \
     -e "s/10.0.0.3/${vip}/g" \
     -i keepalived/*.conf \
-    -i 2-create_k8s.sh \
-    -i Vagrantfile
+    -i 2-create_k8s.sh
