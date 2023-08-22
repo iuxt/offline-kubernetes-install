@@ -14,6 +14,10 @@ net.bridge.bridge-nf-call-iptables = 1
 EOF
 sudo sysctl --system
 
+# 关闭swap
+sudo swapoff -a
+sed -i 's/.*swap.*/#&/' /etc/fstab
+
 cd ./docker && bash ./install.sh && cd ..
 cd ./kubeadm && bash ./install.sh && cd ..
 
