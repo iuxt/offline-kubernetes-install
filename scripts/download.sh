@@ -9,6 +9,7 @@ curl -OL -C - https://github.com/iuxt/offline-kubernetes-install/releases/downlo
 curl -OL -C - https://github.com/iuxt/offline-kubernetes-install/releases/download/kubeadm_images/kubeadm_images.tar.gz
 curl -OL -C - https://github.com/iuxt/offline-kubernetes-install/releases/download/kubeadm_rpms/kubeadm_rpms.tar.gz
 curl -OL -C - https://github.com/iuxt/offline-kubernetes-install/releases/download/keepalived/keepalived.tar.gz
+curl -OL -C - https://github.com/iuxt/offline-kubernetes-install/releases/download/bash-completion/bash-completion-2.1-8.el7.noarch.rpm
 
 md5sum -c md5.sum
 
@@ -19,3 +20,4 @@ tar xf kernel_5.4.tar.gz -C ../kernel_5.4/
 tar xf kubeadm_images.tar.gz -C ../kubeadm/
 tar xf kubeadm_rpms.tar.gz -C ../kubeadm/
 tar xf keepalived.tar.gz -C ../keepalived/
+cp bash-completion-2.1-8.el7.noarch.rpm ../kubeadm/
