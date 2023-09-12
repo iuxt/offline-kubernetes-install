@@ -4,3 +4,4 @@ fdb228d3d72b103d856b43d4387b40c9  ingress-nginx.tar.gz
 01817c514eff0f592764783c6da476cc  keepalived.tar.gz
 9beba9e40a72d2b5ae4c8616d11fc10e  kubeadm_images.tar.gz
 abcd0f840ce38a38b5201a3fb29d9d10  kubeadm_rpms.tar.gz
+5e7034cf2c2420bf799ecfe0720061b3  kernel_5.4.tar.gz
