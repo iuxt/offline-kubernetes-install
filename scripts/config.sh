@@ -11,5 +11,5 @@ sed -e "s/__MASTER1__/${MASTER1}/g" \
     -i keepalived/*.conf
 
 # 修改脚本内VIP
-sed -e "s/__API_SERVER__/${VIP}/g" -i 2-create_k8s.sh
+sed -e "s/__API_SERVER__/${VIP}/g" -i create_cluster.sh
 

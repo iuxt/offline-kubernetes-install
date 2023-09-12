@@ -1,12 +1,12 @@
 #!/bin/bash
 set -euo pipefail
 
-apiserver="__API_SERVER__"
+source ../single.env
 
 # 初始化集群
 sudo kubeadm init \
     --kubernetes-version 1.21.10 \
-    --control-plane-endpoint "${apiserver}:6443" \
+    --control-plane-endpoint "${API_SERVER}:6443" \
     --upload-certs \
     --service-cidr=10.96.0.0/12 \
     --pod-network-cidr=10.244.0.0/16
