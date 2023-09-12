@@ -26,6 +26,6 @@ sudo sysctl --system
 swapoff -a
 sed -i 's/.*swap.*/#&/' /etc/fstab
 
-cd ./docker && bash ./install.sh && cd ..
-cd ./kubeadm && bash ./install.sh && cd ..
+cd ../docker && bash ./install.sh && cd -
+cd ../kubeadm && bash ./install.sh && cd -
 

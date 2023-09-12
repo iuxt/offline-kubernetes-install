@@ -25,4 +25,4 @@ source <(kubectl completion bash)
 EOF
 fi
 
-cd flannel && bash install.sh && cd ..
+cd ../flannel && bash install.sh && cd -
