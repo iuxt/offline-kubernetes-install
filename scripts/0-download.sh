@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-cd temp/
+cd ../temp/
 curl -OL -C - https://github.com/iuxt/offline-kubernetes-install/releases/download/docker-ce-20.10.23-3.el7.x86_64/docker-ce-20.10.tar.gz
 curl -OL -C - https://github.com/iuxt/offline-kubernetes-install/releases/download/flannel/flannel.tar.gz
 curl -OL -C - https://github.com/iuxt/offline-kubernetes-install/releases/download/ingress-nginx/ingress-nginx.tar.gz
