@@ -1,4 +1,11 @@
-sudo systemctl disable --now firewalld
+#!/bin/bash
+
+if [ $(id -u) != "0" ]; then
+    echo "Error: You must be root to run this script"
+    exit 1
+fi
+
+systemctl disable --now firewalld
 setenforce 0
 sed -i "s/^SELINUX=.*/SELINUX=disabled/g" /etc/selinux/config
 
@@ -15,7 +22,7 @@ EOF
 sudo sysctl --system
 
 # 关闭swap
-sudo swapoff -a
+swapoff -a
 sed -i 's/.*swap.*/#&/' /etc/fstab
 
 cd ./docker && bash ./install.sh && cd ..

@@ -1,13 +1,12 @@
 #!/bin/bash
+set -euo pipefail
 
-master1="10.0.0.112"
-master2="10.0.0.122"
-master3="10.0.0.132"
-vip="10.0.0.32"
+source .env
 
-sed -e "s/10.0.0.11/${master1}/g" \
-    -e "s/10.0.0.12/${master2}/g" \
-    -e "s/10.0.0.13/${master3}/g" \
-    -e "s/10.0.0.3/${vip}/g" \
-    -i keepalived/*.conf \
-    -i 2-create_k8s.sh
+sed -e "s/__MASTER1__/${MASTER1}/g" \
+    -e "s/__MASTER2__/${MASTER2}/g" \
+    -e "s/__MASTER3__/${MASTER3}/g" \
+    -e "s/__VIP__/${VIP}/g" \
+    -i keepalived/*.conf
+
+sed -e "s/__API_SERVER__/${VIP}/g" -i 2-create_k8s.sh
