@@ -11,8 +11,8 @@
 | 2-create_k8s.sh    | 创建集群, 只需要在一台master上执行即可 |
 | 3-nginx_ingress.sh | 安装nginx-ingress                      |
 
-事先执行0-download.sh下载好离线包到master1上面
-5.4内核看个人需求是否执行
+事先执行`0-download.sh`下载好离线包到`master1`上面
+5.4内核看个人需求是否执行, 如需更新， 执行 `scripts/0-kernel_5.4.sh`
 
 ## 单节点k8s部署
 
