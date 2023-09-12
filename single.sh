@@ -8,11 +8,8 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
-source .env
-
-
 cd scripts
 ./1-init.sh
-sed -e "s/__API_SERVER__/${VIP}/g" -i 2-create_k8s.sh
+sed -e "s/^apiserver=.*/apiserver=${VIP}/g" -i 2-create_k8s.sh
 ./2-create_k8s.sh
 ./3-nginx_ingress.sh

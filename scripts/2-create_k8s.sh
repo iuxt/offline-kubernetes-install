@@ -1,9 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-source .env
-
-
 apiserver="__API_SERVER__"
 
 
