@@ -19,9 +19,9 @@ sed -e "s/__MASTER1__/${MASTER1}/g" \
     -i keepalived/*.conf
 
 # 分发仓库文件
-rsync -avz * root@${MASTER1}:/tmp/
-rsync -avz * root@${MASTER2}:/tmp/
-rsync -avz * root@${MASTER3}:/tmp/
+rsync -avz --exclude=temp * root@${MASTER1}:/tmp/
+rsync -avz --exclude=temp * root@${MASTER2}:/tmp/
+rsync -avz --exclude=temp * root@${MASTER3}:/tmp/
 
 # keepalived 配置
 ssh root@${MASTER1} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived1.conf /etc/keepalived/keepalived.conf && systemctl restart keepalived"
