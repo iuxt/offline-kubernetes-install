@@ -28,4 +28,5 @@ sed -i 's/.*swap.*/#&/' /etc/fstab
 
 cd ../docker && bash ./install.sh && cd -
 cd ../kubeadm && bash ./install.sh && cd -
+cd ../flannel && bash install.sh
 
