@@ -10,26 +10,34 @@ fi
 
 
 # 生成keepalived配置文件
-git 
+git checkout keepalived/*.conf
 sed -e "s/__MASTER1__/${MASTER1}/g" \
     -e "s/__MASTER2__/${MASTER2}/g" \
     -e "s/__MASTER3__/${MASTER3}/g" \
-    -e "s/__VIP__/${VIP}/g" \
+    -e "s/__VIP__/${API_SERVER}/g" \
     -e "s/__NETWORK_NIC__/${NETWORK_NIC}/g" \
     -i keepalived/*.conf
 
 # 分发仓库文件
-scp -r * root@${MASTER1}:/tmp/
-scp -r * root@${MASTER2}:/tmp/
-scp -r * root@${MASTER3}:/tmp/
+rsync -avz * root@${MASTER1}:/tmp/
+rsync -avz * root@${MASTER2}:/tmp/
+rsync -avz * root@${MASTER3}:/tmp/
 
-# 分发配置
-ssh root@${MASTER1} "cd /tmp/keepalived/ && cp keepalived1.conf /etc/keepalived/keepalived.conf && bash install.sh"
-ssh root@${MASTER2} "cd /tmp/keepalived/ && cp keepalived2.conf /etc/keepalived/keepalived.conf && bash install.sh"
-ssh root@${MASTER3} "cd /tmp/keepalived/ && cp keepalived3.conf /etc/keepalived/keepalived.conf && bash install.sh"
+# keepalived 配置
+ssh root@${MASTER1} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived1.conf /etc/keepalived/keepalived.conf && systemctl restart keepalived"
+ssh root@${MASTER2} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived2.conf /etc/keepalived/keepalived.conf && systemctl restart keepalived"
+ssh root@${MASTER3} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived3.conf /etc/keepalived/keepalived.conf && systemctl restart keepalived"
 
-exit 1
+# 创建集群
+ssh root@${MASTER1} "cd /tmp/scripts/ && ./init.sh"
+ssh root@${MASTER2} "cd /tmp/scripts/ && ./init.sh"
+ssh root@${MASTER3} "cd /tmp/scripts/ && ./init.sh"
+
 cd scripts
-./init.sh
-./create_cluster.sh ${API_SERVER}
-./nginx_ingress.sh
+./create_cluster.sh ${API_SERVER} | tee /tmp/install.log
+
+# 获取安装信息
+MASTER_JOIN_COMMAND=$(cat /tmp/install.log | grep -A 5 "You can now join any number of the control-plane" | grep -vE "You can now join any number of the control-plane|^$")
+
+ssh root@${MASTER2} "${MASTER_JOIN_COMMAND}"
+ssh root@${MASTER3} "${MASTER_JOIN_COMMAND}"
