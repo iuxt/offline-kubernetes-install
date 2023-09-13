@@ -10,5 +10,5 @@ fi
 
 cd scripts
 ./init.sh
-./create_cluster.sh
+./create_cluster.sh ${API_SERVER}
 ./nginx_ingress.sh
