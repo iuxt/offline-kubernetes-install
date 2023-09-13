@@ -23,4 +23,4 @@ EOF
 fi
 
 # 安装flannel
-cd ../flannel && bash install.sh && kubectl apply -f ./kube-flannel.yml && cd -
+kubectl apply -f ../flannel/kube-flannel.yml
