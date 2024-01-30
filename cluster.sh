@@ -29,11 +29,11 @@ ssh root@${MASTER2} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived2
 ssh root@${MASTER3} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived3.conf /etc/keepalived/keepalived.conf && systemctl restart keepalived"
 
 # 创建集群
-ssh root@${MASTER1} "cd /tmp/scripts/ && ./init.sh"
-ssh root@${MASTER2} "cd /tmp/scripts/ && ./init.sh"
-ssh root@${MASTER3} "cd /tmp/scripts/ && ./init.sh"
+ssh root@${MASTER1} "cd /tmp/init/ && ./init.sh"
+ssh root@${MASTER2} "cd /tmp/init/ && ./init.sh"
+ssh root@${MASTER3} "cd /tmp/init/ && ./init.sh"
 
-cd scripts
+cd kubeadm
 ./create_cluster.sh ${API_SERVER} | tee /tmp/install.log
 
 # 获取安装信息
