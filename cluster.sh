@@ -12,9 +12,9 @@ fi
 scp -r init/ root@${MASTER1}:/tmp/
 scp -r init/ root@${MASTER2}:/tmp/
 scp -r init/ root@${MASTER3}:/tmp/
-ssh root@${MASTER1} "cd /tmp/init/ && ./init.sh"
-ssh root@${MASTER2} "cd /tmp/init/ && ./init.sh"
-ssh root@${MASTER3} "cd /tmp/init/ && ./init.sh"
+ssh root@${MASTER1} "cd /tmp/init/ && bash ./init.sh"
+ssh root@${MASTER2} "cd /tmp/init/ && bash ./init.sh"
+ssh root@${MASTER3} "cd /tmp/init/ && bash ./init.sh"
 
 # 生成keepalived配置文件
 git checkout keepalived/*.conf
@@ -36,10 +36,6 @@ ssh root@${MASTER2} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived2
 ssh root@${MASTER3} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived3.conf /etc/keepalived/keepalived.conf && systemctl restart keepalived"
 
 # 创建集群
-ssh root@${MASTER1} "cd /tmp/init/ && ./init.sh"
-ssh root@${MASTER2} "cd /tmp/init/ && ./init.sh"
-ssh root@${MASTER3} "cd /tmp/init/ && ./init.sh"
-
 cd kubeadm
 ./create_cluster.sh ${API_SERVER} | tee /tmp/install.log
 
