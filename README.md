@@ -5,32 +5,32 @@
 
 centos 7 最小化安装, 所有节点之间做好 ssh 免密并成功登录一次
 
-提前执行scripts/download.sh下载离线包才可离线安装
+提前执行 download.sh 下载离线包才可离线安装
 
 ## 文件介绍
 
 
 | 脚本               | 说明                                   |
 | ------------------ | -------------------------------------- |
-| kernel_5.4.sh    | 可选, 安装5.4内核                      |
-| 0-config.sh        | 修改里面的配置, 然后执行               |
+| kernel_5.4    | 可选, 安装5.4内核                      |
+| ingress-nginx        | ingress-nginx 集群入口               |
 | download.sh      | 下载离线包, 支持断点续传               |
-| init.sh          | 初始化配置, 所有节点都需要执行         |
-| create_cluster.sh    | 创建集群, 只需要在一台master上执行即可 |
-| nginx_ingress.sh | 安装nginx-ingress                      |
+| kubeadm          |  安装 kubeadm 和初始化集群        |
 
 事先执行`download.sh`下载好离线包到`master1`上面
-5.4内核看个人需求是否执行, 如需更新， 执行 `scripts/kernel_5.4.sh`
+5.4内核看个人需求是否执行, 如需更新， 执行 `kernel_5.4/install.sh`
 
 ## 单节点k8s部署
 
-1. 执行 scripts/download.sh 下载需要的包
+1. 执行 download.sh 下载需要的包
 2. 修改 single.env 里面的apiserver地址
 3. 执行 single.sh 即可创建集群
 
 ## 集群部署
 
 前提条件： 代码克隆到 master1 上面， 确保 master1 可以免密访问其他节点
+
+执行 download.sh 下载需要的包
 
 修改 cluster.env 配置
 
