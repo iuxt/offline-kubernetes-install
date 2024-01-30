@@ -37,6 +37,7 @@ ssh root@${MASTER3} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived3
 
 # 创建集群
 cd kubeadm
+./install.sh
 ./create_cluster.sh ${API_SERVER} | tee /tmp/install.log
 
 # 获取安装信息
