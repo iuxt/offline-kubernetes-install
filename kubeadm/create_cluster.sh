@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euo pipefail
 
 # 初始化集群
 sudo kubeadm init \

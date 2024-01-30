@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euo pipefail
 
 source cluster.env
 
@@ -35,9 +34,13 @@ ssh root@${MASTER1} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived1
 ssh root@${MASTER2} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived2.conf /etc/keepalived/keepalived.conf && systemctl restart keepalived"
 ssh root@${MASTER3} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived3.conf /etc/keepalived/keepalived.conf && systemctl restart keepalived"
 
+# 安装 kubeadm 组件
+ssh root@${MASTER1} "cd /tmp/kubeadm/ && bash install.sh"
+ssh root@${MASTER2} "cd /tmp/kubeadm/ && bash install.sh"
+ssh root@${MASTER3} "cd /tmp/kubeadm/ && bash install.sh"
+
 # 创建集群
 cd kubeadm
-./install.sh
 ./create_cluster.sh ${API_SERVER} | tee /tmp/install.log
 
 # 获取安装信息

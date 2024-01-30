@@ -1,6 +1,4 @@
 #!/bin/bash
-set -euo pipefail
-
 
 yum install -y docker-ce-20.10/*.rpm
 
