@@ -8,6 +8,13 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
+# 部署之前先分发 init 内容
+scp -r init/ root@${MASTER1}:/tmp/
+scp -r init/ root@${MASTER2}:/tmp/
+scp -r init/ root@${MASTER3}:/tmp/
+ssh root@${MASTER1} "cd /tmp/init/ && ./init.sh"
+ssh root@${MASTER2} "cd /tmp/init/ && ./init.sh"
+ssh root@${MASTER3} "cd /tmp/init/ && ./init.sh"
 
 # 生成keepalived配置文件
 git checkout keepalived/*.conf

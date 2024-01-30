@@ -27,8 +27,5 @@ swapoff -a
 sed -i 's/.*swap.*/#&/' /etc/fstab
 
 yum install -y ./*.rpm
-
-cd ../docker && bash ./install.sh && cd -
-cd ../kubeadm && bash ./install.sh && cd -
-cd ../flannel && bash install.sh
+yum install -y ./git-2.31.1/*.rpm
 

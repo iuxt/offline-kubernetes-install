@@ -8,7 +8,6 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
-cd scripts
-./init.sh
-./create_cluster.sh ${API_SERVER}
-./nginx_ingress.sh
+./init/init.sh
+./kubeadm/create_cluster.sh ${API_SERVER}
+./ingress-nginx/install.sh
