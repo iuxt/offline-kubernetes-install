@@ -34,6 +34,11 @@ ssh root@${MASTER1} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived1
 ssh root@${MASTER2} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived2.conf /etc/keepalived/keepalived.conf && systemctl restart keepalived"
 ssh root@${MASTER3} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived3.conf /etc/keepalived/keepalived.conf && systemctl restart keepalived"
 
+# 安装Docker
+ssh root@${MASTER1} "cd /tmp/docker/ && bash ./install.sh"
+ssh root@${MASTER2} "cd /tmp/docker/ && bash ./install.sh"
+ssh root@${MASTER3} "cd /tmp/docker/ && bash ./install.sh"
+
 # 安装 kubeadm 组件
 ssh root@${MASTER1} "cd /tmp/kubeadm/ && bash install.sh"
 ssh root@${MASTER2} "cd /tmp/kubeadm/ && bash install.sh"
