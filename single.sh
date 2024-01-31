@@ -8,5 +8,7 @@ if [ $(id -u) != "0" ]; then
 fi
 
 ./init/init.sh
+./docker/install.sh
+./kubeadm/install.sh
 ./kubeadm/create_cluster.sh ${API_SERVER}
 ./ingress-nginx/install.sh
