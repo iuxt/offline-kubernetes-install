@@ -28,6 +28,6 @@ sed -i 's/.*swap.*/#&/' /etc/fstab
 yum install -y ./*.rpm
 yum install -y ./git-2.31.1/*.rpm
 
-sed -i 's/.*UseDNS .*/UseDNS no/' /etc/ssh/sshd
+sed -i 's/.*UseDNS .*/UseDNS no/' /etc/ssh/sshd_config
 systemctl restart sshd
 
