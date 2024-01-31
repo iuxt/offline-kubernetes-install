@@ -9,6 +9,7 @@ fi
 
 ./init/init.sh
 ./docker/install.sh
+./flannel/install.sh
 ./kubeadm/install.sh
 ./kubeadm/create_cluster.sh ${API_SERVER}
 ./ingress-nginx/install.sh

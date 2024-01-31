@@ -44,6 +44,11 @@ ssh root@${MASTER1} "cd /tmp/kubeadm/ && bash install.sh"
 ssh root@${MASTER2} "cd /tmp/kubeadm/ && bash install.sh"
 ssh root@${MASTER3} "cd /tmp/kubeadm/ && bash install.sh"
 
+# 导入flannel镜像
+ssh root@${MASTER1} "cd /tmp/flannel/ && bash install.sh"
+ssh root@${MASTER2} "cd /tmp/flannel/ && bash install.sh"
+ssh root@${MASTER3} "cd /tmp/flannel/ && bash install.sh"
+
 # 创建集群
 cd kubeadm
 ./create_cluster.sh ${API_SERVER} | tee /tmp/install.log
