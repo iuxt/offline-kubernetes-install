@@ -50,11 +50,10 @@ ssh root@${MASTER2} "cd /tmp/flannel/ && bash install.sh"
 ssh root@${MASTER3} "cd /tmp/flannel/ && bash install.sh"
 
 # 创建集群
-cd kubeadm
-./create_cluster.sh ${API_SERVER} | tee /tmp/install.log
+ssh root@${MASTER1} "cd /tmp/kubeadm && ./create_cluster.sh ${API_SERVER} | tee /tmp/install.log"
 
 # 获取安装信息
-MASTER_JOIN_COMMAND=$(cat /tmp/install.log | grep -A 5 "You can now join any number of the control-plane" | grep -vE "You can now join any number of the control-plane|^$")
+MASTER_JOIN_COMMAND=$(ssh root@${MASTER1} 'cat /tmp/install.log | grep -A 5 "You can now join any number of the control-plane" | grep -vE "You can now join any number of the control-plane|^$."')
 
 ssh root@${MASTER2} "${MASTER_JOIN_COMMAND}"
 ssh root@${MASTER3} "${MASTER_JOIN_COMMAND}"
