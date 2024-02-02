@@ -28,7 +28,7 @@ centos 7 最小化安装, 所有节点之间做好 ssh 免密并成功登录一�
 ## 单节点k8s部署
 
 1. 执行 download.sh 下载需要的包
-2. 修改 single.env 里面的apiserver地址, 单节点就填自己的 ip
+2. 修改 .env 里面的apiserver地址, 单节点就填自己的 ip
 3. 执行 single.sh 即可创建单 master k8s
 
 ## 集群部署
@@ -37,7 +37,7 @@ centos 7 最小化安装, 所有节点之间做好 ssh 免密并成功登录一�
 
 执行 download.sh 下载需要的包
 
-修改 cluster.env 配置
+修改 .env 配置
 
 执行 cluster.sh 进行初始化
 

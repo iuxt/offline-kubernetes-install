@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source cluster.env
+source .env
 
 if [ $(id -u) != "0" ]; then
     echo "Error: You must be root to run this script"
