@@ -7,9 +7,8 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
-./init/init.sh
-./docker/install.sh
-./flannel/install.sh
-./kubeadm/install.sh
-./kubeadm/create_cluster.sh ${API_SERVER}
-./ingress-nginx/install.sh
+cd init && bash init.sh && cd -
+cd docker && bash install.sh && cd -
+cd flannel && bash install.sh && cd -
+cd kubeadm && bash install.sh && bash create_cluster.sh ${API_SERVER} && cd -
+cd ingress-nginx && bash install.sh && cd -
