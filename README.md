@@ -1,5 +1,13 @@
 # offline-kubernetes-install
-完全离线的情况下, 安装k8s集群, 基于 CentOS7, k8s 1.21.10 版本, 容器运行时 是docker， 安装工具是kubeadm， 全部采用容器化或者rpm包的形式部署， 坚决不使用二进制。
+
+## 项目特点
+基于 CentOS7, k8s 1.21.10 版本
+
+- 完全离线的情况下, 安装k8s集群
+- 容器运行时为 docker
+- 安装工具为 kubeadm
+- 全部采用容器化或者rpm包的形式部署
+- 支持使用国内源进行下载
 
 ## 系统要求
 
