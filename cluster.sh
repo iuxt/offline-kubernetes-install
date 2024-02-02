@@ -2,11 +2,6 @@
 
 source .env
 
-if [ $(id -u) != "0" ]; then
-    echo "Error: You must be root to run this script"
-    exit 1
-fi
-
 # 部署之前先分发 init 内容
 scp -r init/ root@${MASTER1}:/tmp/
 scp -r init/ root@${MASTER2}:/tmp/
