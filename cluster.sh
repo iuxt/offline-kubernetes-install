@@ -20,6 +20,13 @@ for i in $(ls keepalived/keepalived*.conf); do
         > ${i}.tmp
 done
 
+# 生成nginx配置文件
+cat  nginx/nginx.conf | sed -e "s/__MASTER1__/${MASTER1}/g" \
+    -e "s/__MASTER2__/${MASTER2}/g" \
+    -e "s/__MASTER3__/${MASTER3}/g" \
+    -e "s/__VIP__/${API_SERVER}/g" \
+    > nginx/nginx.conf.tmp
+
 # 分发仓库文件
 rsync -avz --exclude=temp * root@${MASTER1}:/tmp/
 rsync -avz --exclude=temp * root@${MASTER2}:/tmp/
@@ -29,6 +36,11 @@ rsync -avz --exclude=temp * root@${MASTER3}:/tmp/
 ssh root@${MASTER1} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived1.conf.tmp /etc/keepalived/keepalived.conf && systemctl restart keepalived"
 ssh root@${MASTER2} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived2.conf.tmp /etc/keepalived/keepalived.conf && systemctl restart keepalived"
 ssh root@${MASTER3} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived3.conf.tmp /etc/keepalived/keepalived.conf && systemctl restart keepalived"
+
+# nginx 配置
+ssh root@${MASTER1} "cd /tmp/nginx/ && bash install.sh && cp -r nginx.conf.tmp /etc/nginx/nginx.conf && systemctl restart nginx"
+ssh root@${MASTER2} "cd /tmp/nginx/ && bash install.sh && cp -r nginx.conf.tmp /etc/nginx/nginx.conf && systemctl restart nginx"
+ssh root@${MASTER3} "cd /tmp/nginx/ && bash install.sh && cp -r nginx.conf.tmp /etc/nginx/nginx.conf && systemctl restart nginx"
 
 # 安装Docker
 ssh root@${MASTER1} "cd /tmp/docker/ && bash ./install.sh"
