@@ -1,5 +1,5 @@
 #!/bin/bash
 
-yum install -y ./nginx/*.rpm
+yum install -y ./*.rpm
 systemctl enable --now nginx
 

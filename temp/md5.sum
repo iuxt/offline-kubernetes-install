@@ -6,4 +6,4 @@ fdb228d3d72b103d856b43d4387b40c9  ingress-nginx.tar.gz
 abcd0f840ce38a38b5201a3fb29d9d10  kubeadm_rpms.tar.gz
 5e7034cf2c2420bf799ecfe0720061b3  kernel_5.4.tar.gz
 f6ba68c59a78076898c93671ddcf9153  rsync-3.1.2-12.el7_9.x86_64.rpm
-ebc7214b5400fb7a5286e9b3261d0d41  nginx.tar.gz
+07eda857bc9ea8bce101725ff873dacd  nginx.tar.gz
