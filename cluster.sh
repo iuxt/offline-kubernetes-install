@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eu
 
 source .env
 
@@ -24,6 +25,7 @@ done
 sed -e "s/__MASTER1__/${MASTER1}/g" \
     -e "s/__MASTER2__/${MASTER2}/g" \
     -e "s/__MASTER3__/${MASTER3}/g" \
+    -e "s/__VIP__/${API_SERVER}/g" \
     nginx/nginx.conf > nginx/nginx.conf.tmp
 
 # 分发仓库文件
