@@ -7,3 +7,4 @@ abcd0f840ce38a38b5201a3fb29d9d10  kubeadm_rpms.tar.gz
 5e7034cf2c2420bf799ecfe0720061b3  kernel_5.4.tar.gz
 f6ba68c59a78076898c93671ddcf9153  rsync-3.1.2-12.el7_9.x86_64.rpm
 07eda857bc9ea8bce101725ff873dacd  nginx.tar.gz
+4f95c0f0e7b837468124657e01b25545  haproxy-1.5.18-9.el7_9.1.x86_64.rpm

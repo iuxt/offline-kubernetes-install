@@ -21,11 +21,11 @@ for i in $(ls keepalived/keepalived*.conf); do
         > ${i}.tmp
 done
 
-# 生成nginx配置文件
+# 生成haproxy配置文件
 sed -e "s/__MASTER1__/${MASTER1}/g" \
     -e "s/__MASTER2__/${MASTER2}/g" \
     -e "s/__MASTER3__/${MASTER3}/g" \
-    nginx/nginx.conf > nginx/nginx.conf.tmp
+    haproxy/haproxy.cfg > haproxy/haproxy.cfg.tmp
 
 # 分发仓库文件
 rsync -avz --exclude=temp * root@${MASTER1}:/tmp/
@@ -37,10 +37,10 @@ ssh root@${MASTER1} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived1
 ssh root@${MASTER2} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived2.conf.tmp /etc/keepalived/keepalived.conf && systemctl restart keepalived"
 ssh root@${MASTER3} "cd /tmp/keepalived/ && bash install.sh && cp -r keepalived3.conf.tmp /etc/keepalived/keepalived.conf && systemctl restart keepalived"
 
-# nginx配置
-ssh root@${MASTER1} "cd /tmp/nginx && bash install.sh && cp -rf nginx.conf.tmp /etc/nginx/nginx.conf && systemctl restart nginx"
-ssh root@${MASTER2} "cd /tmp/nginx && bash install.sh && cp -rf nginx.conf.tmp /etc/nginx/nginx.conf && systemctl restart nginx"
-ssh root@${MASTER3} "cd /tmp/nginx && bash install.sh && cp -rf nginx.conf.tmp /etc/nginx/nginx.conf && systemctl restart nginx"
+# haproxy配置
+ssh root@${MASTER1} "cd /tmp/haproxy && bash install.sh && cp -rf haproxy.cfg.tmp /etc/haproxy/haproxy.cfg && systemctl restart haproxy"
+ssh root@${MASTER2} "cd /tmp/haproxy && bash install.sh && cp -rf haproxy.cfg.tmp /etc/haproxy/haproxy.cfg && systemctl restart haproxy"
+ssh root@${MASTER3} "cd /tmp/haproxy && bash install.sh && cp -rf haproxy.cfg.tmp /etc/haproxy/haproxy.cfg && systemctl restart haproxy"
 
 # 安装Docker
 ssh root@${MASTER1} "cd /tmp/docker/ && bash ./install.sh"
